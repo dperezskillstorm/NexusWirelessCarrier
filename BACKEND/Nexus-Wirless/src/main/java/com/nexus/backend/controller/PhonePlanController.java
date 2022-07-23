@@ -22,4 +22,7 @@ public class PhonePlanController {
 	public List<PhonePlan> getAllUser(){
 		return phonePlanRepository.findAll();
 	}
+	
+	
+	
 }

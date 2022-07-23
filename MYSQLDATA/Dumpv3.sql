@@ -29,9 +29,11 @@ CREATE TABLE `account` (
   `first_name` varchar(45) DEFAULT NULL,
   `email_add` varchar(45) DEFAULT NULL,
   `id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_name`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='			';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='			';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,8 +42,33 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('David99','1234','Perez','Michael','Aperez@skillstorm.com',1),('John66','2345','Perez','Robbie','Jperez@skilledstorm.com',4),('PaulLee77','23FD','Lee','Paul','plee@skillstorm',2),('Regine88','ABCD','Donatien','Regine','Rdonatien@skillstorm',3);
+INSERT INTO `account` VALUES ('David99','1234','Perez','David','Aperez@skillstorm.com',1,NULL,NULL),('Doc88',NULL,'Holliday','Doc','doc@gmil.com',6,NULL,NULL),('John66','2345','Perez','Robbie','Robbie@gmail.com',4,NULL,NULL),('PaulLee77','23FD','Lee','Paul','plee@skillstorm',2,NULL,NULL),('Roger55','2345','Smith','Manny','Rg@gmail.com',8,NULL,NULL),('storm111',NULL,'Piper','Danny','Piper@gmail.com',7,NULL,NULL);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `authorities`
+--
+
+DROP TABLE IF EXISTS `authorities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `authorities` (
+  `username` varchar(50) NOT NULL,
+  `authority` varchar(50) NOT NULL,
+  KEY `username` (`username`),
+  CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `authorities`
+--
+
+LOCK TABLES `authorities` WRITE;
+/*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
+INSERT INTO `authorities` VALUES ('admin','ROLE_ADMIN'),('customer','ROLE_USER'),('david','ROLE_USER'),('david99','ROLE_USER');
+/*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -72,7 +99,7 @@ CREATE TABLE `device_model` (
 
 LOCK TABLES `device_model` WRITE;
 /*!40000 ALTER TABLE `device_model` DISABLE KEYS */;
-INSERT INTO `device_model` VALUES ('Apple iPhone13',1999,'Apple A15 Bionic','128GB/256GB/1TB storage, no card slot',0,NULL,NULL,NULL,NULL),('Galaxy S6',2019,'SuperProcessor 5gz','Sleek Profile, Dual Camera',0,NULL,NULL,NULL,NULL),('Google Pixel 5a',2021,'SnapDragon 765G','128GB storage, no card slot',0,NULL,NULL,NULL,NULL),('HTC Desire 21 Pro',2021,'SnapDragon 690 5G','128GB storage, microSDX',0,NULL,NULL,NULL,NULL);
+INSERT INTO `device_model` VALUES ('Apple iPhone13',1999,'Apple A15 Bionic','128GB/256GB/1TB storage, no card slot',1,NULL,NULL,NULL,NULL),('Galaxy S6',2019,'SuperProcessor 5gz','Sleek Profile, Dual Camera',2,NULL,NULL,NULL,NULL),('Google Pixel 5a',2021,'SnapDragon 765G','128GB storage, no card slot',3,NULL,NULL,NULL,NULL),('HTC Desire 21 Pro',2021,'SnapDragon 690 5G','128GB storage, microSDX',4,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `device_model` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,10 +143,10 @@ CREATE TABLE `phone_plans` (
   `device_limit` int DEFAULT NULL,
   `price_per_line` double DEFAULT NULL,
   `description` varchar(50) DEFAULT NULL,
-  `id` bigint NOT NULL,
-  PRIMARY KEY (`plan_name`),
+  `id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `plan_name_UNIQUE` (`plan_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,8 +155,35 @@ CREATE TABLE `phone_plans` (
 
 LOCK TABLES `phone_plans` WRITE;
 /*!40000 ALTER TABLE `phone_plans` DISABLE KEYS */;
-INSERT INTO `phone_plans` VALUES ('Basic Family',2,35.99,'Talk and Text, 1GB Data',0),('Gold Ulta',3,40,'Talk and Text, 10 Data',0);
+INSERT INTO `phone_plans` VALUES ('Basic Family',2,35.99,'Talk and Text, 1GB Data',1),('Gold Ulta',3,40,'Talk and Text, 10 Data',2),('Premium',4,49.99,'Everything Plus More',4);
 /*!40000 ALTER TABLE `phone_plans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -185,11 +239,7 @@ CREATE TABLE `user_plan` (
   `id` bigint NOT NULL,
   `id_user_plan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`iduser_plan`),
-  UNIQUE KEY `iduser_plan_UNIQUE` (`iduser_plan`),
-  KEY `username_idx` (`user_name_u`),
-  KEY `plan_name_idx` (`plan_name_u`),
-  CONSTRAINT `plan_name` FOREIGN KEY (`plan_name_u`) REFERENCES `phone_plans` (`plan_name`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `username` FOREIGN KEY (`user_name_u`) REFERENCES `account` (`user_name`) ON DELETE SET NULL ON UPDATE CASCADE
+  UNIQUE KEY `iduser_plan_UNIQUE` (`iduser_plan`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12345686 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -199,7 +249,7 @@ CREATE TABLE `user_plan` (
 
 LOCK TABLES `user_plan` WRITE;
 /*!40000 ALTER TABLE `user_plan` DISABLE KEYS */;
-INSERT INTO `user_plan` VALUES (12345683,'Regine88','Gold Ulta',3,0,NULL),(12345684,'PaulLee77',NULL,3,0,NULL),(12345685,'David99',NULL,3,0,NULL);
+INSERT INTO `user_plan` VALUES (12345683,NULL,'Gold Ulta',3,0,NULL),(12345684,'PaulLee77',NULL,3,0,NULL),(12345685,'David99',NULL,3,0,NULL);
 /*!40000 ALTER TABLE `user_plan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +267,7 @@ CREATE TABLE `user_plans` (
   `plan_name_u` varchar(255) DEFAULT NULL,
   `user_name_u` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,12 +276,38 @@ CREATE TABLE `user_plans` (
 
 LOCK TABLES `user_plans` WRITE;
 /*!40000 ALTER TABLE `user_plans` DISABLE KEYS */;
+INSERT INTO `user_plans` VALUES (1,'1212435','3','Basic Family','david99');
 /*!40000 ALTER TABLE `user_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'nexus-carrier'
+-- Table structure for table `users`
 --
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `username` varchar(50) NOT NULL,
+  `password` varchar(120) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('admin','admin',1,3,'a@gmail.com','smith','johen'),('customer','customer',1,2,'c@gmail.com','perez','roger'),('david','david',1,1,'d@gmail.com','perez','david'),('david99','david',1,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -242,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-18 23:09:42
+-- Dump completed on 2022-07-22 19:40:02

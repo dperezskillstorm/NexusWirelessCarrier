@@ -19,10 +19,10 @@ public class User {
 	private long id;
 	
 	@Column(name = "user_name")
-	private String userName;
+	private String username;
 	
 	@Column(name = "password")
-	private String userPassword;
+	private String password;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -40,8 +40,8 @@ public class User {
 			
 	public User(String userName, String userPassword, String firstName, String lastName, String email) {
 		super();
-		this.userName = userName;
-		this.userPassword = userPassword;
+		this.username = userName;
+		this.password = userPassword;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -53,16 +53,16 @@ public class User {
 		this.id = id;
 	}
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 	public String getUserPassword() {
-		return userPassword;
+		return password;
 	}
 	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+		this.password = userPassword;
 	}
 	public String getFirstName() {
 		return firstName;

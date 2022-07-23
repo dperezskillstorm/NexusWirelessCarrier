@@ -1,12 +1,17 @@
 package com.nexus.backend.controller;
 
+import java.io.Console;
 import java.util.HashMap;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +34,27 @@ public class UserController {
 	private UserRepository userRepository;
 	
 	
-	//Get all users
+	
+	
+//	//Get all users
 	@CrossOrigin
-	@GetMapping("/users")
+	@GetMapping("/admin-users")
 	public List<User> getAllUser(){
-		
 		return userRepository.findAll();
 	}
+	
+	//Get Username from auth getName() and uses the value to search for record with thta name
+	@CrossOrigin
+	@GetMapping("/user")
+	public ResponseEntity<User> getUserByName(Authentication auth ) {
+		String temp = auth.getName();
+		System.out.println(temp);
+		//User user = userRepository.findByusername("David99");
+		User user = userRepository.findByusername(temp);
+		return ResponseEntity.ok(user); 
+		 
+	}
+	
 	
 	//create user rest api
 	@CrossOrigin
@@ -43,6 +62,8 @@ public class UserController {
 	public User createUser(@RequestBody User user) {
 		return userRepository.save(user);
 	}
+	
+	
 
 	// get user by id rest api
 	@CrossOrigin
@@ -52,6 +73,8 @@ public class UserController {
 				.orElseThrow(() -> new ResourceNotFoundException("user not exist with id :" + id));
 		return ResponseEntity.ok(user);
 	}
+
+	
 
 	@CrossOrigin
 	@PutMapping("/users/{id}")

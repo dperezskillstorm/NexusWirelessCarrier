@@ -1,0 +1,16 @@
+.main-div mat-card{
+    padding: 0px;
+    border: 2px;
+
+}
+
+.main-div mat-toolbar{
+   
+    background: blue;
+
+}
+
+.main-div form{
+    border-style:double;
+
+}
