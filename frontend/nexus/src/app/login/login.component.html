@@ -1,18 +1,9 @@
-<div fxLayoutAlign="center center"  class ="main-div">
-<mat-card fxFlex ="25">
-    <mat-toolbar>Login Page</mat-toolbar>
-    <form (ngSubmit)="userLogin()" fxLayoutAlign = 'stretch' fxLayout="column" class="login-form">
-        <mat-form-field   >
-            <label>User Name</label>
-          <input matInput type="text" [(ngModel)]= "user.userName" id="userName" name="userName" >
-        </mat-form-field>
-      
-        <mat-form-field  >
-            <label>Password</label>
-            <input matInput type="type" [(ngModel)]= "user.userPassword" id="userPassword" name="userPassword" >
-          </mat-form-field>
-          <button mat-raise-button type="submit">Login</button>
-      </form>
-      
-</mat-card>
-</div>
+<div class="container">
+    <div>
+      User Name : <input type="text" name="username" [(ngModel)]="username">
+      Password : <input type="password" name="password" [(ngModel)]="password">
+    </div>
+    <button (click)=checkLogin() class="btn btn-success">
+      Login
+    </button>
+  </div>

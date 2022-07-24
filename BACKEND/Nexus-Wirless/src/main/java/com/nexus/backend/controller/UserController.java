@@ -27,18 +27,30 @@ import com.nexus.backend.model.User;
 import com.nexus.backend.repository.UserRepository;
 
 @RestController
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/")
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
+/**
+ * API: http://localhost:8080/api/v1/users   -Returns all info,post,put with /{id}
+ * API: http://localhost:8080/api/v1/user    - sessioned user info returned only
+ * 
+ * API THAT WORKS UNDER ADMIN
+ * "/users -> GET,POST,PUT,DELETE
+ * 
+ * API THAT WORKS UNDER USER ROLE
+ * "/user -> Get
+ * 
+ * 
+ *Need to activate the user through authoritie in database, if not, user can retreive data
+ */
 	
 	
-	
-//	//Get all users
+//Get all users
 	@CrossOrigin
-	@GetMapping("/admin-users")
+	@GetMapping("/users")
 	public List<User> getAllUser(){
 		return userRepository.findAll();
 	}
@@ -55,6 +67,15 @@ public class UserController {
 		 
 	}
 	
+
+	
+	//validate login
+	@CrossOrigin("http://localhost:4200")
+	@GetMapping(produces =" application/json")
+	@RequestMapping({"/validateLogin"})
+	public User validateLogin() {
+		return new User("User successfully authentcated");
+	}
 	
 	//create user rest api
 	@CrossOrigin

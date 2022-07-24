@@ -1,0 +1,23 @@
+<h2> Device List</h2>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th>Device Name</th>
+            <th> Year</th>
+            <th> Processor </th>
+            <th> Description</th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let device of devices" >
+            <td> {{ device.deviceName }} </td>
+            <td> {{ device.year }} </td>
+            <td> {{ device.processor }} </td>
+            <td> {{ device.description }} </td>
+            <td>
+             
+            </td>
+        </tr>
+    </tbody>
+</table>

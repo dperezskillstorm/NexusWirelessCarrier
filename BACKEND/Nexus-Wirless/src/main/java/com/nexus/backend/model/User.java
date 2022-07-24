@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "account")
+@Table(name = "users")
 public class User {
 	
 	//DAVID: I added a id number to the account table in sql to enable find by account and return the correct results
@@ -18,7 +18,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "user_name")
+	@Column(name = "username")
 	private String username;
 	
 	@Column(name = "password")
@@ -30,8 +30,15 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@Column(name = "email_add")
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "enabled")
+	private boolean Enabled;
+
+	private String status;
+	
+	
 	
 	public User(){
 		
@@ -45,7 +52,34 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.Enabled=true;
+		
 	}
+	
+	public User(String status) {
+		this.status = status;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	
+	public boolean isEnabled() {
+		return Enabled;
+	}
+
+
+	public void setEnabled(boolean enabled) {
+		Enabled = enabled;
+	}
+
+
 	public long getId() {
 		return id;
 	}

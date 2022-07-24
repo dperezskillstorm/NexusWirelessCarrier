@@ -1,10 +1,13 @@
 package com.nexus.backend.security;
 
+import java.util.Arrays;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,6 +20,10 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -43,27 +50,17 @@ public void configAuthentication(AuthenticationManagerBuilder auth) throws Excep
 //      .authorities("USER");
 //}
 	
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+
+
     
-    	http
-    	.authorizeRequests()
-    	.antMatchers("/api/v1/users/**")
-    	.hasRole("ADMIN")
-    	.antMatchers("/api/v1/user_devices/**")
-    	.hasRole("USER")
-    	.antMatchers("/api/v1/user_plans/**")
-    	.hasRole("USER")
-    	.antMatchers("/api/v1/user/**")
-    	.hasAnyRole("USER","ADMIN")
-    	.antMatchers("/**")
-    	.permitAll()
-    	.anyRequest()
-    	.authenticated()
-    	.and()
-    	.httpBasic();
     
-     
+    	@Override
+    	protected void configure(HttpSecurity http) throws Exception {
+    		http.csrf().disable().
+
+    				authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
+    				.and().httpBasic();
+    
           
           
         
@@ -73,6 +70,9 @@ public void configAuthentication(AuthenticationManagerBuilder auth) throws Excep
     public PasswordEncoder getPasswordEncoder() {
     	return NoOpPasswordEncoder.getInstance();
     }
+    
+   
+}
 
 //@Override
 //	public UserDetailsService userDetailsServiceBean() {
@@ -83,4 +83,3 @@ public void configAuthentication(AuthenticationManagerBuilder auth) throws Excep
 	
 	
 	
-}
