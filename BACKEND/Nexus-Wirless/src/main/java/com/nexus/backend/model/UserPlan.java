@@ -19,9 +19,6 @@ public class UserPlan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "id_user_plan")
-	private String idUserPlan;
-	
 	@Column(name = "user_name_u")
 	private String userNameU;
 	
@@ -36,9 +33,8 @@ public class UserPlan {
 	}
 			
 			
-	public UserPlan(String idUserPlan, String userNameU, String planNameU, String numOfLines) {
+	public UserPlan( String userNameU, String planNameU, String numOfLines) {
 		super();
-		this.idUserPlan = idUserPlan;
 		this.userNameU = userNameU;
 		this.planNameU = planNameU;
 		this.numOfLines = numOfLines;
@@ -50,12 +46,7 @@ public class UserPlan {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getIdUserPlan() {
-		return idUserPlan;
-	}
-	public void setIdUserPlan(String idUserPlan) {
-		this.idUserPlan = idUserPlan;
-	}
+	
 	public String getUserNameU() {
 		return userNameU;
 	}

@@ -19,6 +19,7 @@ import com.nexus.backend.repository.UserPlanRepository;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserPlanController {
 	
 	@Autowired

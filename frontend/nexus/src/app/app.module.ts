@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UserDashComponent } from './user-dash/user-dash.component';
 import { DevicesComponent } from './devices/devices.component';
+import { UserPlansComponent } from './user-plans/user-plans.component';
+
 @NgModule({
 
   
@@ -26,7 +28,8 @@ import { DevicesComponent } from './devices/devices.component';
     LoginComponent,
     LogoutComponent,
     UserDashComponent,
-    DevicesComponent
+    DevicesComponent,
+    UserPlansComponent
     
    
   ],
@@ -36,7 +39,11 @@ import { DevicesComponent } from './devices/devices.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+  //    {  
+  //      provide:HTTP_INTERCEPTORS, useClass:CommonInterceptor, multi:true 
+  //  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

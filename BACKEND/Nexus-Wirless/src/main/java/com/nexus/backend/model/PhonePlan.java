@@ -4,14 +4,16 @@
 package com.nexus.backend.model;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "phone_plans")
+@Table(name = "phone_plan")
 public class PhonePlan {
 	
 	@Id

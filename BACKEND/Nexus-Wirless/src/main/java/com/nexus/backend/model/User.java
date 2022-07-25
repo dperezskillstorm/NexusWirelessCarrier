@@ -36,16 +36,13 @@ public class User {
 	@Column(name = "enabled")
 	private boolean Enabled;
 
-	private String status;
-	
-	
 	
 	public User(){
 		
 	}
 			
 			
-	public User(String userName, String userPassword, String firstName, String lastName, String email) {
+	public User(int id,String userName, String userPassword, String firstName, String lastName, String email) {
 		super();
 		this.username = userName;
 		this.password = userPassword;
@@ -55,19 +52,6 @@ public class User {
 		this.Enabled=true;
 		
 	}
-	
-	public User(String status) {
-		this.status = status;
-	}
-	
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
 	
 	
 	public boolean isEnabled() {

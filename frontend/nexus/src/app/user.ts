@@ -8,10 +8,24 @@ export class User {
 
 }
 
+export class Device {
+    id:number =0;
+    deviceName: string ="";
+    year: number =0;
+    processor: String ="";
+    description: String = "";
+    
 
-// export class UserPlan {
-//     idUserPlan: number|undefined;
-//     userNameU: String |undefined;
-//     planNameU: String |undefined;
-//     numOfLines:String |undefined;
-// }
+
+  
+
+
+}
+
+export class UserPlan {
+    id: number =0;
+    userNameU: String ="";
+    planNameU: String ="";
+    numOfLines:number =0;
+ 
+}

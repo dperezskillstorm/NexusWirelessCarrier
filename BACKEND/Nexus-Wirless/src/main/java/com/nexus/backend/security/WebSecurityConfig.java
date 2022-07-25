@@ -50,19 +50,18 @@ public void configAuthentication(AuthenticationManagerBuilder auth) throws Excep
 //      .authorities("USER");
 //}
 	
-
-
-    
     
     	@Override
     	protected void configure(HttpSecurity http) throws Exception {
-    		http.csrf().disable().
-
-    				authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
-    				.and().httpBasic();
-    
-          
-          
+//    		http.
+//    				authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
+//    				.and().httpBasic();
+    		
+ 		http.cors().and().csrf().disable().authorizeRequests()
+  		.antMatchers("/**").permitAll().anyRequest().anonymous().and().httpBasic();
+    	
+    		
+    		
         
     }
     
