@@ -14,6 +14,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserDashComponent } from './user-dash/user-dash.component';
 import { DevicesComponent } from './devices/devices.component';
 import { UserPlansComponent } from './user-plans/user-plans.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
 
@@ -29,7 +30,8 @@ import { UserPlansComponent } from './user-plans/user-plans.component';
     LogoutComponent,
     UserDashComponent,
     DevicesComponent,
-    UserPlansComponent
+    UserPlansComponent,
+    HomeComponent
     
    
   ],

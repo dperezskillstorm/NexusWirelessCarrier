@@ -9,6 +9,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
 import { UserDashComponent } from './user-dash/user-dash.component';
 import { DevicesComponent } from './devices/devices.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent, canActivate:[AuthGaurdService]},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'logout', component: LogoutComponent,canActivate:[AuthGaurdService]  },
   {path: 'overview', component: UserDashComponent,canActivate:[AuthGaurdService]  },
-  {path: 'devices', component: DevicesComponent,canActivate:[AuthGaurdService]  }
+  {path: 'devices', component: DevicesComponent,canActivate:[AuthGaurdService]  },
+  {path: 'home', component: HomeComponent }
 ];
 
 @NgModule({
