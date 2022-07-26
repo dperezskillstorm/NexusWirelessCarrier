@@ -10,10 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
-	
-	//DAVID: I added a id number to the account table in sql to enable find by account and return the correct results
-
-	
+		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

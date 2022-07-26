@@ -16,10 +16,8 @@ public class UserDevice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long device_id;
 	
-	@Column(name = "iduser_device")
-	private String idUserDevice;
 	
 	@Column(name = "device_name_d")
 	private String deviceNameD;
@@ -43,7 +41,7 @@ public class UserDevice {
 			
 	public UserDevice(String idUserDevice, String deviceNameD, String phoneNumberD, String planNameD, String userDeviceFirstName, String userDeviceLastName) {
 		super();
-		this.idUserDevice = idUserDevice;
+		
 		this.deviceNameD = deviceNameD;
 		this.phoneNumberD = phoneNumberD;
 		this.planNameD = planNameD;
@@ -52,17 +50,12 @@ public class UserDevice {
 
 	}
 	public long getId() {
-		return id;
+		return device_id;
 	}
 	public void setId(long id) {
-		this.id = id;
+		this.device_id = id;
 	}
-	public String getIdUserDevice() {
-		return idUserDevice;
-	}
-	public void setIdUserDevice(String idUserDevice) {
-		this.idUserDevice = idUserDevice;
-	}
+
 	public String getDeviceNameD() {
 		return deviceNameD;
 	}

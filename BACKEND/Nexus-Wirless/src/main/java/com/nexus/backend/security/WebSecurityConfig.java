@@ -81,4 +81,3 @@ public void configAuthentication(AuthenticationManagerBuilder auth) throws Excep
 //}
 	
 	
-	

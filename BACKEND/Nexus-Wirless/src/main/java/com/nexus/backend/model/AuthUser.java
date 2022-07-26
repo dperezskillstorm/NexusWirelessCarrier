@@ -1,5 +1,5 @@
 package com.nexus.backend.model;
-
+//Created this model to be used to authorized users and return status
 public class AuthUser {
 	private String status;
 	

@@ -1,17 +1,11 @@
 package com.nexus.backend.controller;
 
-import java.io.Console;
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nexus.backend.exception.ResourceNotFoundException;
-import com.nexus.backend.model.AuthUser;
 import com.nexus.backend.model.User;
 import com.nexus.backend.repository.UserRepository;
 @CrossOrigin(origins = "http://localhost:4200")
@@ -34,17 +27,13 @@ public class UserController {
 	private UserRepository userRepository;
 	
 /**
- * API: http://localhost:8080/api/v1/users   -Returns all info,post,put with /{id}
- * API: http://localhost:8080/api/v1/user    - sessioned user info returned only
- * 
- * API THAT WORKS UNDER ADMIN
- * "/users -> GET,POST,PUT,DELETE
- * 
- * API THAT WORKS UNDER USER ROLE
- * "/user -> Get
- * 
- * 
- *Need to activate the user through authoritie in database, if not, user can retreive data
+ * API USED IN THIS CONTROLLER
+ * API: http://localhost:8080/api/v1/users TESTED WITH GET, POST
+ * API: http://localhost:8080/api/v1/users/{id} TESTED WITH PUT, DELETE
+ * API: http://localhost:8080/api/v1/user TESTED WITH GET -> Returns single user info
+ *   
+ * PENDING WILL ADD ROLE-BASED FILTERS AFTER AS WE FINISH FRONT END
+ *   
  */
 	
 	
