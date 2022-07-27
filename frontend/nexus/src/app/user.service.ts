@@ -67,7 +67,7 @@ export class UserService {
  
   getUserPlans(): Observable<UserPlan[]>{
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa ( sessionStorage.getItem('username')+ ':' + sessionStorage.getItem('password')) });
-    return this.httpClient.get<UserPlan[]>('http://localhost:8080/api/v1/user_plans',{headers});
+    return this.httpClient.get<UserPlan[]>('http://localhost:8080/api/v1/user_plan',{headers});
   }
 
 

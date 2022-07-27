@@ -1,11 +1,13 @@
 package com.nexus.backend.controller;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.nexus.backend.exception.ResourceNotFoundException;
 import com.nexus.backend.model.User;
 import com.nexus.backend.repository.UserRepository;
@@ -35,6 +36,20 @@ public class UserController {
  * PENDING WILL ADD ROLE-BASED FILTERS AFTER AS WE FINISH FRONT END
  *   
  */
+	
+	
+	
+
+	
+	
+	@CrossOrigin
+	@PostMapping("/register")
+	public User createUserRegistration(@RequestBody User user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String rawpassword = encoder.encode(user.getPassword());
+		user.setPassword(rawpassword);
+		return userRepository.save(user);
+	}
 	
 	
 //Get all users
@@ -64,6 +79,8 @@ public class UserController {
 	public User createUser(@RequestBody User user) {
 		return userRepository.save(user);
 	}
+
+	
 	
 
 	// get user by id rest api
@@ -74,9 +91,9 @@ public class UserController {
 				.orElseThrow(() -> new ResourceNotFoundException("user not exist with id :" + id));
 		return ResponseEntity.ok(user);
 	}
-
 	
 
+	
 	@CrossOrigin
 	@PutMapping("/users/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails){

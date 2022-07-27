@@ -36,11 +36,11 @@ public class UserPlanController {
 	//MOVE TO USER PLANS
 	@CrossOrigin
 	@GetMapping("/user_plan")
-	public ResponseEntity<UserPlan> getUserByName(Authentication auth ) {
+	public ResponseEntity<UserPlan[]> getUserByName(Authentication auth ) {
 		String temp = auth.getName();
 		System.out.println(temp);
 		//User user = userRepository.findByusername("David99");
-		UserPlan plan = userPlanRepository.findByuserNameU(temp);
+		UserPlan[] plan = (UserPlan[]) userPlanRepository.findByuserNameU(temp);
 	return ResponseEntity.ok(plan); 
 	}
 	
