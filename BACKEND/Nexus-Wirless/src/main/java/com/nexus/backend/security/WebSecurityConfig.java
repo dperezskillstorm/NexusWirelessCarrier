@@ -63,15 +63,13 @@ public void configure(AuthenticationManagerBuilder auth) throws Exception {
     
  @Override
 protected void configure(HttpSecurity http) throws Exception {
-http.cors().and().csrf().disable().authorizeRequests()
+http.cors().and().csrf().disable();
+//.antMatchers("/api/v1/login").permitAll()
+//.antMatchers("/api/v1/register").permitAll().anyRequest().authenticated().and().formLogin();
 
-.antMatchers("/**").permitAll().anyRequest().anonymous().and().formLogin();
-
-//	http.cors().and().csrf().disable().authorizeRequests()
-//  		.antMatchers("/**").anyRequest().anonymous().and().httpBasic();
-//    	
-// 		
-//    		
+http.httpBasic().and().authorizeRequests()
+	.antMatchers("/api/v1/login", "/api/v1/register").permitAll()
+	.anyRequest().authenticated();
         
     }
     

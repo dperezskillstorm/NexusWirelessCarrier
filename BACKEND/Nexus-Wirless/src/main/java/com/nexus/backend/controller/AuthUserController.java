@@ -17,8 +17,10 @@ public class AuthUserController {
 	//validate login
 	@CrossOrigin
 	@GetMapping(produces =" application/json")
-	@RequestMapping({"/login"})
+	@RequestMapping("/login")
 	public AuthUser validateLogin() {
+		//String 
+		//System.out.println("attempt to login");
 		return new AuthUser("User successfully authentcated");
 	}
 }

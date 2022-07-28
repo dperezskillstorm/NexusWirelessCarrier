@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,10 +63,12 @@ public class UserController {
 	//Get Username from auth getName() and uses the value to search for record with thta name
 	@CrossOrigin
 	@GetMapping("/user")
-	public ResponseEntity<User> getUserByName(Authentication auth ) {
+	public ResponseEntity<User> getUserByUsername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
 		String temp = auth.getName();
 		System.out.println(temp);
-		//User user = userRepository.findByusername("David99");
+		//User user = userRepository.findByusername("david01");
 		User user = userRepository.findByusername(temp);
 		return ResponseEntity.ok(user); 
 		 
