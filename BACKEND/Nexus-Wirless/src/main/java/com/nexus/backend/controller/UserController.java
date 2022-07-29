@@ -45,12 +45,16 @@ public class UserController {
 	
 	@CrossOrigin
 	@PostMapping("/register")
-	public User createUserRegistration(@RequestBody User user) {
+	public User createUserRegistration(@RequestBody User  user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String rawpassword = encoder.encode(user.getPassword());
+		String password = user.getPassword();
+		System.out.println(password);
+		String rawpassword = encoder.encode(password);
 		user.setPassword(rawpassword);
 		return userRepository.save(user);
 	}
+	
+
 	
 	
 //Get all users
@@ -60,7 +64,9 @@ public class UserController {
 		return userRepository.findAll();
 	}
 	
-	//Get Username from auth getName() and uses the value to search for record with thta name
+
+
+	
 	@CrossOrigin
 	@GetMapping("/user")
 	public ResponseEntity<User> getUserByUsername() {

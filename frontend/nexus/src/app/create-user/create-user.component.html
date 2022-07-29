@@ -1,12 +1,11 @@
-<div class="col-md-6 offset-md-3">
-    <h3> Create user </h3>
+<div class="boxbox">
+    <h3 class="welcome" style="font-weight: bolder;"> Welcome to Nexus Wireless </h3>
+    <p class="pee">Please register your account</p>
     <form (ngSubmit) = "onSubmit()">
-    
-
         <div class="form-group">
             <label> User Name</label>
-            <input type="text" class ="form-control" id = "userName"
-                [(ngModel)] = "user.userName" name = "userName">
+            <input type="text" class ="form-control" id = "userame"
+                [(ngModel)] = "user.username" name = "username">
         </div>
 
         <div class="form-group">
@@ -30,10 +29,10 @@
         <div class="form-group">
             <label> password</label>
             <input type="text" class ="form-control" id = "password"
-                [(ngModel)] = "user.userPassword" name = "password">
+                [(ngModel)] = "user.password" name = "password">
         </div>
     
-        <button class = "btn btn-success" type ="submit">Submit</button>
+        <button class = "btn btn-success" type ="submit">Sign Up</button>
     
     </form>
     </div> 

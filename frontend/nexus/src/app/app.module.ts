@@ -15,6 +15,7 @@ import { UserDashComponent } from './user-dash/user-dash.component';
 import { DevicesComponent } from './devices/devices.component';
 import { UserPlansComponent } from './user-plans/user-plans.component';
 import { HomeComponent } from './home/home.component';
+import { PlansComponent } from './plans/plans.component';
 
 @NgModule({
 
@@ -31,7 +32,8 @@ import { HomeComponent } from './home/home.component';
     UserDashComponent,
     DevicesComponent,
     UserPlansComponent,
-    HomeComponent
+    HomeComponent,
+    PlansComponent
     
    
   ],

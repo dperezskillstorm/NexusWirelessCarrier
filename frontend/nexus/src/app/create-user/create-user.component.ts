@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../user';
+import { RegUser, User } from '../user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 })
 export class CreateUserComponent implements OnInit {
 
-  user: User = new User();
+  user: RegUser = new RegUser();
 
   constructor(private userService: UserService,
     private router: Router) { }
@@ -20,7 +20,8 @@ export class CreateUserComponent implements OnInit {
   saveEmployee(){
     this.userService.createUser(this.user).subscribe( data =>{
       console.log(data);
-      this.goToEmployeeList();
+      this.router.navigate(['/login']);
+      
     },
     error => console.log(error));
   }
